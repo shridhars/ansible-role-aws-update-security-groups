@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: aws-update-security-groups
   author: Shridhar Alve
   description: Update security groups for all aws ec2 instances in us-east region
   company: your company (optional)
