@@ -24,13 +24,13 @@ None
 
 ## Example Playbook
 
-- hosts: webservers
-  vars:
-    aws_region: us-east-1
-    sg_port: 9100
-    ip_address_cidr: 0.0.0.0/0
-  roles:
-    - { role: shridhars.aws-update-security-groups }
+    - hosts: webservers
+      vars:
+        aws_region: us-east-1
+        sg_port: 9100
+        ip_address_cidr: 0.0.0.0/0
+      roles:
+        - { role: shridhars.aws-update-security-groups }
 
 License
 -------
