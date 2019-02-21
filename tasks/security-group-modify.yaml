@@ -1,0 +1,12 @@
+tasks:
+- name: Gather the EC2 facts about running instances
+  ec2_instance_facts:
+   region: "{{ aws_region }}"
+#     filters:
+#       "tag:Name": "nv-ec-analytics*"
+  register: result
+- name: List instances
+  include_tasks: security-group-modify-include.yaml
+  with_items: "{{ result.instances }}"
+  loop_control:
+    loop_var: ec2_ins

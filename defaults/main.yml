@@ -1,0 +1,5 @@
+---
+# defaults file for aws-update-security-groups
+aws_region: us-east-1
+sg_port: 9100
+ip_address_cidr: 0.0.0.0/0

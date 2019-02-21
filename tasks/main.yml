@@ -1,0 +1,4 @@
+---
+# tasks file for aws-update-security-groups
+- name: Update aws security groups
+  include_tasks: "security-group-modify.yaml"

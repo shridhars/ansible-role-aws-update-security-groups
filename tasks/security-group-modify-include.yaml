@@ -1,0 +1,24 @@
+- name: listing groups
+  ec2_group_facts:
+    region: "{{ aws_region }}"
+    filters:
+      group-name: "{{ item.group_name }}"
+  register: group_dtls
+  with_items: "{{ ec2_ins.security_groups }}"
+- name: modifying group details
+#  debug: 
+#    msg: "{{ item.security_groups[0].group_name }}"
+#  with_items: "{{ group_dtls.results }}"
+  ec2_group:
+    name: "{{ item.security_groups[0].group_name }}"
+    region: us-east-1
+    description: "{{ item.security_groups[0].description }}"
+    vpc_id: "{{ item.security_groups[0].vpc_id }}"
+    purge_rules: false
+    rules:
+      - proto: tcp
+        ports:
+        - "{{ sg_port }}"
+        cidr_ip: "{{ ip_address_cidr }}"
+        rule_desc: Prometheus Monitoring Server Access
+  with_items: "{{ group_dtls.results }}"
