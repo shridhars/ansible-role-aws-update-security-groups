@@ -6,12 +6,9 @@
   register: group_dtls
   with_items: "{{ ec2_ins.security_groups }}"
 - name: modifying group details
-#  debug: 
-#    msg: "{{ item.security_groups[0].group_name }}"
-#  with_items: "{{ group_dtls.results }}"
   ec2_group:
     name: "{{ item.security_groups[0].group_name }}"
-    region: us-east-1
+    region: "{{ aws_region }}"
     description: "{{ item.security_groups[0].description }}"
     vpc_id: "{{ item.security_groups[0].vpc_id }}"
     purge_rules: false
