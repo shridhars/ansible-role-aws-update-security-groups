@@ -1,10 +1,6 @@
 ---
-- name: Gather the EC2 facts about running instances
-  ec2_instance_facts:
-   region: "{{ aws_region }}"
-  register: result
-- name: List instances
+- name: Getting security groups per instance
   include_tasks: security-group-modify-include.yaml
-  with_items: "{{ result.instances }}"
+  with_items: "{{ hostvars[inventory_hostname].ec2_security_group_names.split(',') }}"
   loop_control:
-    loop_var: ec2_ins
+    loop_var: ec2_ins_secgr

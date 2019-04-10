@@ -3,6 +3,7 @@
 ## Requirements
 
 aws cli configured on the system running ansible.
+Dynamic aws inventory files for ansible, ec2.ini and ec2.py
 
 ## Role Variables
 
@@ -24,7 +25,9 @@ None
 
 ## Example Playbook
 
-    - hosts: webservers
+    - hosts: all
+      connection: local
+      gather_facts: yes      
       vars:
         aws_region: us-east-1
         sg_port: 9100
